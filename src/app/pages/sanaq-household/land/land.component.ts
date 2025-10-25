@@ -40,7 +40,7 @@ export class LandComponent implements OnInit {
 
     editLand(row: ZemlyaSanaqResponse) {
         const ref = this.dialog.open(SanaqEditDialogComponent, {
-            data: { value: String(row.value), label: row.questionCode + ' ' + row.questionName },
+            data: { value: String(row.personValue), label: row.questionCode + ' ' + row.questionName },
             width: '560px',
             disableClose: true
         });
@@ -57,14 +57,14 @@ export class LandComponent implements OnInit {
             } as ZemlyaSanaqRequest;
 
             this.api.saveChanges(payload).subscribe(resp => {
-                row.value = v.value;
+                row.personValue = v.value;
             });
 
         });
     }
 
     totalLand() {
-        return this.landRows.reduce((sum, row) => sum + Number(row.value || 0), 0);
+        return this.landRows.reduce((sum, row) => sum + Number(row.personValue || 0), 0);
     }
 
     openHistory() {

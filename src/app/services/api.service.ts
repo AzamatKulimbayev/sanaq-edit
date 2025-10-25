@@ -15,17 +15,18 @@ export interface HouseholdResponse {
     }>;
 }
 export interface ZemlyaSanaqResponse {
+    iin: string
+    katoValue: string
+    katoName: string
+    questionCode: string
+    questionName: string
+    optionName: string
+    questionId: number
+    questionOptionId: number
+    personValue: number
+    katoAvgValue: number;
+    peerCount: number
     answerId: number;
-    bin: string;
-    formName: string;
-    formTypeName: string;
-    iin: string;
-    optionName: string;
-    questionCode: string;
-    questionName: string;
-    sectionName: string;
-    value: string;
-    avgKato: number;
 }
 
 export interface ZemlyaSanaqRequest {

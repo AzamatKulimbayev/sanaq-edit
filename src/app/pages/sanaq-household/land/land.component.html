@@ -26,11 +26,11 @@ margin-bottom:8px;">
 
         <!-- Площадь (со стрелочкой тренда) -->
         <td class="number" style="text-align:right; white-space:nowrap;">
-            <span>{{ e.value }}</span>
+            <span>{{ e.personValue }}</span>
 
             <!-- зелёная стрелка вверх если > +10% -->
             <mat-icon
-                    *ngIf="e.avgKato && e.value > e.avgKato * 1.1"
+                    *ngIf="e.katoAvgValue && e.personValue > e.katoAvgValue * 1.1"
                     class="trend-icon up"
                     title="Выше среднего по КАТО"
                     style="font-size:16px; vertical-align:middle; color:#16a34a; margin-left:4px;">
@@ -39,7 +39,7 @@ margin-bottom:8px;">
 
             <!-- красная стрелка вниз если < -10% -->
             <mat-icon
-                    *ngIf="e.avgKato && e.value < e.avgKato * 0.9"
+                    *ngIf="e.katoAvgValue && e.personValue < e.katoAvgValue * 0.9"
                     class="trend-icon down"
                     title="Ниже среднего по КАТО"
                     style="font-size:16px; vertical-align:middle; color:#dc2626; margin-left:4px;">
@@ -49,7 +49,7 @@ margin-bottom:8px;">
 
         <!-- Среднее по КАТО -->
         <td class="number" style="text-align:right; white-space:nowrap;">
-            {{ e.avgKato ?? '—' }}
+            {{ e.katoAvgValue ?? '—' }}
         </td>
 
         <!-- Действия -->
