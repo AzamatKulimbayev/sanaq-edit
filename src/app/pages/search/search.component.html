@@ -12,7 +12,7 @@
             <input matInput [(ngModel)]="iinBin" name="iinBin" placeholder="Введите 12 цифр..." />
         </mat-form-field>
 
-        <button mat-raised-button color="primary" type="submit">
+        <button mat-raised-button color="primary" type="submit" [disabled]="iinBin.length != 12">
             <mat-icon>search</mat-icon>&nbsp;Найти
         </button>
     </form>

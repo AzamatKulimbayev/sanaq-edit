@@ -26,7 +26,11 @@ import {SanaqSearchComponent} from "./pages/sanaq-search/sanaq-search.component"
 
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {SanaqHouseholdComponent, SanaqEditDialogComponent, SanaqHistoryDialogComponent}  from "./pages/sanaq-household/sanaq-household.component";
+import {SanaqHouseholdComponent}  from "./pages/sanaq-household/sanaq-household.component";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {LandComponent} from "./pages/sanaq-household/land/land.component";
+import {SanaqEditDialogComponent} from "./shared/dialogs/sanaq-edit-dialog.component";
+import {SanaqHistoryDialogComponent} from "./shared/dialogs/sanaq-history-dialog.component";
 
 
 @NgModule({
@@ -49,8 +53,6 @@ import {SanaqHouseholdComponent, SanaqEditDialogComponent, SanaqHistoryDialogCom
         MatFormFieldModule,
 
 
-
-
         BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
@@ -60,7 +62,7 @@ import {SanaqHouseholdComponent, SanaqEditDialogComponent, SanaqHistoryDialogCom
         MatButtonModule, MatInputModule, MatIconModule, MatCardModule, MatTabsModule,
         MatTableModule, MatDialogModule, MatSelectModule, MatBadgeModule, MatTooltipModule,
         MatRippleModule,
-        HttpClientModule
+        HttpClientModule, MatProgressSpinner, LandComponent
 
     ],
     providers: [],

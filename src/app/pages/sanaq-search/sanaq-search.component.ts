@@ -61,12 +61,13 @@ export class SanaqSearchComponent {
 
     this.api.loadHousehold(clean).subscribe({
       next: resp => {
+        debugger
         this.loading = false;
 
 
         this.router.navigate(
             ['/sanaq-household', this.mode, clean],
-            { state: { household: resp, formType: this.formType } }
+            // { state: { household: resp, formType: this.formType } }
         );
       },
       error: () => {
