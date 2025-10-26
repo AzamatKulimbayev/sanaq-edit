@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {environment} from "../../environments/environment";
 
 export interface HouseholdResponse {
     meta: {
@@ -60,15 +61,15 @@ export class ApiService {
     constructor(private http: HttpClient) {}
 
     loadHousehold(iinBin: string) {
-        return this.http.get<ZemlyaSanaqResponse[]>('/api/SanaqEdit/zemlya-sanaq/' + iinBin , {  });
+        return this.http.get<ZemlyaSanaqResponse[]>(environment.apiUrl + '/api/SanaqEdit/zemlya-sanaq/' + iinBin , {  });
     }
 
     saveChanges(payload: ZemlyaSanaqRequest) {
-        return this.http.put<any>('/api/SanaqEdit/zemlya-sanaq', payload);
+        return this.http.put<any>(environment.apiUrl + '/api/SanaqEdit/zemlya-sanaq', payload);
     }
 
 
     loadHistories(answerIds: number[]) {
-        return this.http.post<SanaqHistoriesResponse[]>('/api/SanaqEdit/histories-by-answer-ids' , answerIds);
+        return this.http.post<SanaqHistoriesResponse[]>(environment.apiUrl + '/api/SanaqEdit/histories-by-answer-ids' , answerIds);
     }
 }
