@@ -1,31 +1,112 @@
-<div class="small" style="margin-bottom:12px; cursor:pointer" (click)="back()">← Назад к выбору источника</div>
 
-<div *ngIf="!formType" class="p-6">
-    <h2 class="mat-headline-5 mb-3">Выберите форму</h2>
+<div class="small"
+     style="margin-bottom:16px; cursor:pointer; display:flex; align-items:center; gap:4px;"
+     (click)="back()">
+    ← Назад к выбору источника
+</div>
 
-    <mat-button-toggle-group (change)="selectForm($event.value)" appearance="legacy">
+<div *ngIf="!formType" class="section-card" style="max-width:640px; margin-bottom:24px;">
+    <div class="h1" style="margin-bottom:16px;">Выберите форму</div>
+
+    <div class="small" style="color:#6b7280; margin-bottom:16px;">
+        Укажите тип хозяйства, чтобы продолжить поиск по ИИН/БИН
+    </div>
+
+    <mat-button-toggle-group
+            [value]="formType"
+            (change)="selectForm($event.value)"
+            appearance="legacy"
+            style="display:flex; gap:12px; flex-wrap:wrap;">
         <mat-button-toggle value="LPH">ЛПХ</mat-button-toggle>
         <mat-button-toggle value="SHP">СХП</mat-button-toggle>
     </mat-button-toggle-group>
+
+    <div class="small" style="margin-top:16px; color:#9ca3af;">
+        • ЛПХ — личное подсобное хозяйство<br>
+        • СХП — сельхоз предприятие
+    </div>
 </div>
 
 
-<div *ngIf="formType" class="p-6">
-    <div class="section-card" [@fadeInUp]>
-        <span class="badge">{{mode}} — {{mode==='SANAQ'?'Online':'Сервер'}}</span>
-        <div class="h1">Поиск данных</div>
-        <div class="small" style="margin-bottom:12px">Введите ИИН или БИН для поиска записей</div>
 
-        <form class="search-form" (ngSubmit)="onSearch()">
-            <mat-form-field appearance="outline" class="search-input">
-                <mat-label>ИИН / БИН</mat-label>
-                <input matInput [(ngModel)]="iinBin" name="iinBin" placeholder="Введите 12 цифр..." />
-            </mat-form-field>
+<div *ngIf="formType" class="section-card" [@fadeInUp] style="max-width:760px;">
 
-            <button mat-raised-button color="primary" type="submit">
-                <mat-icon>search</mat-icon>&nbsp;Найти
-            </button>
-        </form>
+    <span class="badge" style="margin-bottom:12px; display:inline-block;">
+    {{ mode }} — {{ mode === 'SANAQ' ? 'Онлайн' : 'Сервер' }}
+  </span>
 
-        <div class="small" style="margin-top:8px;">ИИН/БИН должен состоять из 12 цифр</div>
+    <div class="h1" style="margin-bottom:4px;">Поиск данных</div>
+    <div class="small" style="margin-bottom:20px; color:#6b7280;">
+        Введите ИИН или БИН для поиска записей
+    </div>
+
+
+    <form class="search-form"
+          style="display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start;"
+          (ngSubmit)="onSearch()">
+
+        <mat-form-field appearance="outline" class="search-input" style="flex:1; min-width:260px;">
+            <mat-label>ИИН / БИН</mat-label>
+            <input
+                    matInput
+                    [(ngModel)]="iinBin"
+                    name="iinBin"
+                    [disabled]="loading"
+                    placeholder="Введите 12 цифр..." />
+        </mat-form-field>
+
+        <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="loading"
+                style="height:56px; display:flex; align-items:center; gap:6px;">
+
+            <ng-container *ngIf="!loading">
+                <mat-icon>search</mat-icon>
+                <span>Найти</span>
+            </ng-container>
+
+            <ng-container *ngIf="loading">
+                <mat-progress-spinner
+                        mode="indeterminate"
+                        diameter="18"
+                        strokeWidth="3"
+                        style="margin-right:4px;">
+                </mat-progress-spinner>
+                <span>Поиск…</span>
+            </ng-container>
+        </button>
+    </form>
+
+
+    <div class="small" style="margin-top:8px; color:#6b7280;">
+        ИИН/БИН должен состоять из 12 цифр
+    </div>
+
+
+    <div *ngIf="errorMsg"
+         style="margin-top:12px; font-size:13px; color:#dc2626; font-weight:500;">
+        {{ errorMsg }}
+    </div>
+
+
+    <div class="small"
+         style="margin-top:20px; background:#f8fafc; border:1px solid #e5e7eb; border-radius:8px; padding:12px;">
+        <div style="font-weight:600; margin-bottom:4px;">Примеры:</div>
+        <div>• ИИН: 800325400487</div>
+        <div>• БИН: 104530100000</div>
+        <div style="margin-top:8px; color:#6b7280;">
+            Форма: {{ formType === 'LPH' ? 'ЛПХ' : 'СХП' }}
+        </div>
+    </div>
+
+
+    <div style="margin-top:24px;">
+        <button mat-stroked-button color="primary"
+                (click)="formType = null"
+                [disabled]="loading">
+            Изменить тип формы
+        </button>
+    </div>
 </div>

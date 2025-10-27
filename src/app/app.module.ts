@@ -55,6 +55,7 @@ import {SanaqHouseholdComponent, SanaqEditDialogComponent, SanaqHistoryDialogCom
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
+
         AppRoutingModule,
         MatButtonModule, MatInputModule, MatIconModule, MatCardModule, MatTabsModule,
         MatTableModule, MatDialogModule, MatSelectModule, MatBadgeModule, MatTooltipModule,

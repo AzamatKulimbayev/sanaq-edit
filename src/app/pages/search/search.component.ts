@@ -24,7 +24,7 @@ export class SearchComponent {
     this.mode = (this.ar.snapshot.paramMap.get('mode') as any) || 'ARM';
   }
   back(){ history.back(); }
-  onSearch(){   // <<< нужно для (ngSubmit)
+  onSearch(){   //
     const clean = (this.iinBin || '').replace(/\D/g,'').slice(0,12);
     if (clean.length !== 12) {
       alert('Введите 12 цифр ИИН/БИН');

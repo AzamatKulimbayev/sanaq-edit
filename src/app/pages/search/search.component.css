@@ -1,6 +1,6 @@
 .search-form {
     display: flex;
-    align-items: center;   /* центрируем по визуальной середине */
+    align-items: center;
     gap: 12px;
     margin-top: 12px;
 }
@@ -10,21 +10,20 @@
     margin-bottom: 0 !important;
 }
 
-/* Убираем служебную подстрочную область, чтобы высота поля считалась по реальному инпуту */
+
 .search-form ::ng-deep .mat-mdc-form-field-subscript-wrapper {
     display: none !important;
     height: 0 !important;
     margin: 0 !important;
 }
 
-/* Подгоняем сам «блок» поля до 56px и центрируем содержимое */
 .search-form ::ng-deep .mat-mdc-text-field-wrapper,
 .search-form ::ng-deep .mat-mdc-form-field-flex {
     height: 56px;
     align-items: center;
 }
 
-/* Кнопка той же высоты и с выравниванием по центру */
+
 .search-form button[mat-raised-button] {
     height: 56px;
     padding: 0 22px;
@@ -33,5 +32,5 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    line-height: 1;            /* убираем влияние line-height */
+    line-height: 1;
 }

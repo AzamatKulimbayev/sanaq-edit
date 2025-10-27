@@ -9,7 +9,7 @@ export interface BuildingRow { name: string; qty: number; area: number; source: 
 export interface LandRow {
   name: string;
   value: number;
-  avgKato?: number;  // ← добавили поле для третьей колонки
+  avgKato?: number;
 }
 
 
