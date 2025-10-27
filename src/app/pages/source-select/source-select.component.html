@@ -1,0 +1,36 @@
+<div class="hero">
+    <h1 class="hero__title">Система управления данными</h1>
+    <p class="hero__subtitle">Выберите источник данных для начала работы</p>
+</div>
+
+<div class="cards">
+    <!-- АРМ -->
+    <mat-card class="source-card" (click)="go('ARM')" matRipple>
+        <div class="source-card__icon">
+            <mat-icon>phone_iphone</mat-icon>
+        </div>
+
+        <div class="source-card__title">АРМ</div>
+        <div class="source-card__caption">Данные с планшетов</div>
+        <p class="source-card__text">
+            Работа с данными, полученными через мобильные устройства (планшеты)
+        </p>
+
+        <button mat-stroked-button class="source-card__btn">Выбрать АРМ</button>
+    </mat-card>
+
+    <!-- САНАК -->
+    <mat-card class="source-card source-card--muted" (click)="go('SANAQ')" matRipple>
+        <div class="source-card__icon source-card__icon--muted">
+            <mat-icon>public</mat-icon>
+        </div>
+
+        <div class="source-card__title">САНАК</div>
+        <div class="source-card__caption">Онлайн данные</div>
+        <p class="source-card__text">
+            Работа с данными, введёнными через онлайн-систему
+        </p>
+
+        <button mat-stroked-button class="source-card__btn">Выбрать САНАК</button>
+    </mat-card>
+</div>

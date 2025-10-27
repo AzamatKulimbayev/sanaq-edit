@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json.schemastore.org/angular-cli",
+  "version": 1,
+  "projects": {
+    "angular-lph-full": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/angular-lph-full",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+
+
+            "polyfills": ["src/polyfills.ts"],
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "sourceMap": false
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "angular-lph-full:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "angular-lph-full:build:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "angular-lph-full",
+  "cli": {
+    "analytics": "fc8b60d8-7f7f-4fd6-9bbf-8df7f013184b"
+  }
+}

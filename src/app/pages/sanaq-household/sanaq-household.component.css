@@ -1,0 +1,28 @@
+.table td.number {
+    text-align: right;
+    font-variant-numeric: tabular-nums; /* ровные разряды */
+    min-width: 80px;
+}
+
+.table td.actions {
+    text-align: right;
+    white-space: nowrap;
+}
+.trend-icon {
+    vertical-align: middle;
+    font-size: 18px;
+    margin-left: 4px;
+    transition: transform 0.2s ease;
+}
+
+.trend-icon.up {
+    color: #16a34a; /* зелёный */
+}
+
+.trend-icon.down {
+    color: #dc2626; /* красный */
+}
+
+.trend-icon:hover {
+    transform: scale(1.2);
+}

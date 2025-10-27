@@ -1,0 +1,76 @@
+/* Заголовок */
+.hero {
+    text-align: center;
+    margin: 24px 0 28px;
+}
+.hero__title {
+    font-size: 44px;
+    line-height: 1.1;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin: 0 0 6px;
+}
+.hero__subtitle {
+    margin: 0;
+    color: #6b7280;
+    font-size: 16px;
+}
+
+/* Сетка карточек */
+.cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+/* Карточка источника */
+.source-card {
+    border-radius: 16px !important;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 16px rgba(16,24,40,.06);
+    padding: 22px 22px 18px;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.source-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px rgba(16,24,40,.12);
+    border-color: #c7d2fe;
+}
+.source-card:active {
+    transform: translateY(-1px);
+}
+
+/* Иконка в круге */
+.source-card__icon {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: #eef2ff;
+    color: #3b82f6;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-bottom: 2px;
+}
+.source-card__icon mat-icon { font-size: 24px; }
+.source-card__icon--muted { background: #f4f3ff; color: #7c3aed; }
+
+/* Текстовые элементы */
+.source-card__title { font-size: 26px; font-weight: 700; letter-spacing:-.01em; }
+.source-card__caption { color: #64748b; font-weight: 600; }
+.source-card__text { margin: 8px 0 6px; color: #6b7280; }
+
+/* Кнопка */
+.source-card__btn {
+    margin-top: 8px;
+    height: 44px;
+    border-radius: 10px !important;
+    font-weight: 600;
+}
+@media (max-width: 900px) {
+    .hero__title { font-size: 34px; }
+    .cards { grid-template-columns: 1fr; }
+}
