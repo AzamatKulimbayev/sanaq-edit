@@ -1,0 +1,122 @@
+<div style="
+display:flex;
+justify-content: space-between;
+align-items:center;
+margin-bottom:8px;">
+    <div class="h2">Земельные участки</div>
+    <button mat-stroked-button (click)="openHistory()">
+        ⏱ История
+    </button>
+</div>
+<div class="h3">3. Укажите общую площадь по направлениям землепользования, в том числе посевные площади
+    (включая посевы за пределами приусадебного участка) сезонных и многолетних культур (включая количество) по состоянию на 1 августа 2025 год</div>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Наименование</th>
+        <th style="text-align:right;">Значение</th>
+        <th style="text-align:right;">Среднее значение по КАТО</th>
+        <th style="text-align:right; width: 170px;">Действия</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let e of landRows">
+        <!-- Наименование строки -->
+        <td>{{ e.questionCode }} {{ e.questionName }}</td>
+
+        <!-- Площадь (со стрелочкой тренда) -->
+        <td class="number" style="text-align:right; white-space:nowrap;">
+            <span>{{ e.personValue | number: '1.0-2' }}</span>
+
+            <!-- зелёная стрелка вверх если > +10% -->
+            <mat-icon
+                    *ngIf="e.katoAvgValue && e.personValue > e.katoAvgValue * 1.1"
+                    class="trend-icon up"
+                    title="Выше среднего по КАТО"
+                    style="font-size:16px; vertical-align:middle; color:#16a34a; margin-left:4px;">
+                trending_up
+            </mat-icon>
+
+            <!-- красная стрелка вниз если < -10% -->
+            <mat-icon
+                    *ngIf="e.katoAvgValue && e.personValue < e.katoAvgValue * 0.9"
+                    class="trend-icon down"
+                    title="Ниже среднего по КАТО"
+                    style="font-size:16px; vertical-align:middle; color:#dc2626; margin-left:4px;">
+                trending_down
+            </mat-icon>
+        </td>
+
+        <!-- Среднее по КАТО -->
+        <td class="number" style="text-align:right; white-space:nowrap;">
+            {{ e.katoAvgValue | number: '0.00' ?? '—' }}
+        </td>
+
+        <!-- Действия -->
+        <td class="actions" style="text-align:right;">
+            <button mat-stroked-button color="primary" (click)="editLand(e)">
+                <mat-icon>edit</mat-icon>&nbsp;Редактировать
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+<div class="h3">4. Какие удобрения и средства для улучшения качества почв были использованы под урожай 2025 года</div>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Наименование</th>
+        <th style="text-align:right;">Значение</th>
+        <th style="text-align:right;">Среднее значение по КАТО</th>
+        <th style="text-align:right; width: 170px;">Действия</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let e of landRows">
+        <!-- Наименование строки -->
+        <td>{{ e.questionCode }} {{ e.questionName }}</td>
+
+        <!-- Площадь (со стрелочкой тренда) -->
+        <td class="number" style="text-align:right; white-space:nowrap;">
+            <span>{{ e.personValue | number: '1.0-2' }}</span>
+
+            <!-- зелёная стрелка вверх если > +10% -->
+            <mat-icon
+                    *ngIf="e.katoAvgValue && e.personValue > e.katoAvgValue * 1.1"
+                    class="trend-icon up"
+                    title="Выше среднего по КАТО"
+                    style="font-size:16px; vertical-align:middle; color:#16a34a; margin-left:4px;">
+                trending_up
+            </mat-icon>
+
+            <!-- красная стрелка вниз если < -10% -->
+            <mat-icon
+                    *ngIf="e.katoAvgValue && e.personValue < e.katoAvgValue * 0.9"
+                    class="trend-icon down"
+                    title="Ниже среднего по КАТО"
+                    style="font-size:16px; vertical-align:middle; color:#dc2626; margin-left:4px;">
+                trending_down
+            </mat-icon>
+        </td>
+
+        <!-- Среднее по КАТО -->
+        <td class="number" style="text-align:right; white-space:nowrap;">
+            {{ e.katoAvgValue | number: '0.00' ?? '—' }}
+        </td>
+
+        <!-- Действия -->
+        <td class="actions" style="text-align:right;">
+            <button mat-stroked-button color="primary" (click)="editLand(e)">
+                <mat-icon>edit</mat-icon>&nbsp;Редактировать
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+

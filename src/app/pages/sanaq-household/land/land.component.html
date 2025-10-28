@@ -26,7 +26,7 @@ margin-bottom:8px;">
 
         <!-- Площадь (со стрелочкой тренда) -->
         <td class="number" style="text-align:right; white-space:nowrap;">
-            <span>{{ e.personValue | number: '0.00' }}</span>
+            <span>{{ e.personValue | number: '1.0-2' }}</span>
 
             <!-- зелёная стрелка вверх если > +10% -->
             <mat-icon
@@ -62,14 +62,5 @@ margin-bottom:8px;">
     </tbody>
 </table>
 
-<!-- Итого -->
-<div style="text-align:right; margin-top:12px;" class="small">
-    Σ Итого:
-    <b>
-        {{
-            (landSummary?.value !== undefined && landSummary?.value !== null)
-                ? (landSummary.value | number:'1.0-2')
-                : (totalLand() | number:'1.0-2')
-        }}
-    </b>
-</div>
+
+

@@ -31,7 +31,11 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {LandComponent} from "./pages/sanaq-household/land/land.component";
 import {SanaqEditDialogComponent} from "./shared/dialogs/sanaq-edit-dialog.component";
 import {SanaqHistoryDialogComponent} from "./shared/dialogs/sanaq-history-dialog.component";
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
 
+registerLocaleData(localeRu, 'ru');
 
 @NgModule({
     declarations: [
@@ -65,7 +69,9 @@ import {SanaqHistoryDialogComponent} from "./shared/dialogs/sanaq-history-dialog
         HttpClientModule, MatProgressSpinner, LandComponent
 
     ],
-    providers: [],
+    providers: [
+        { provide: LOCALE_ID, useValue: 'ru' }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
