@@ -1,5 +1,10 @@
 <div *ngIf="isLoading" class="overlay">
-  <div class="spinner">
-    <div class="loader"></div>
-  </div>
+    <div class="spinner">
+        <div class="loader"></div>
+        <div class="loading-text">
+            Загружаются данные хозяйства<br>
+            <span *ngIf="!isSlowLoading">Пожалуйста, подождите…</span>
+            <span *ngIf="isSlowLoading">Данных очень много, пожалуйста, подождите…</span>
+        </div>
+    </div>
 </div>
