@@ -1,3 +1,4 @@
+<app-loading-spinner [isLoading]="loading"></app-loading-spinner>
 <div style="
 display:flex;
 justify-content: space-between;
@@ -13,7 +14,7 @@ margin-bottom:8px;">
     <thead>
     <tr>
         <th>Наименование</th>
-        <th style="text-align:right;">Площадь (га)</th>
+        <th style="text-align:right;">{{ columnName }}</th>
         <th style="text-align:right;">Среднее значение по КАТО</th>
         <th style="text-align:right; width: 170px;">Действия</th>
     </tr>
@@ -22,7 +23,9 @@ margin-bottom:8px;">
     <tbody>
     <tr *ngFor="let e of landRows">
         <!-- Наименование строки -->
-        <td>{{ e.questionCode }} {{ e.questionName }}</td>
+        <td>{{ e.questionCode }} {{ e.questionName }}
+        <span *ngIf="e.optionName">{{ e.optionName }}</span>
+        </td>
 
         <!-- Площадь (со стрелочкой тренда) -->
         <td class="number" style="text-align:right; white-space:nowrap;">

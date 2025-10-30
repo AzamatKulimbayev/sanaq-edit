@@ -56,24 +56,25 @@ export class SanaqSearchComponent {
     }
 
     this.errorMsg = '';
-    this.loading = true;
 
+    this.router.navigate(
+        ['/sanaq-household', this.mode, clean],
+        // { state: { household: resp, formType: this.formType } }
+    );
 
-    this.api.loadHousehold(clean).subscribe({
-      next: resp => {
-        debugger
-        this.loading = false;
-
-
-        this.router.navigate(
-            ['/sanaq-household', this.mode, clean],
-            // { state: { household: resp, formType: this.formType } }
-        );
-      },
-      error: () => {
-        this.loading = false;
-        this.errorMsg = 'Не удалось получить данные. Проверьте ИИН/БИН или попробуйте позже.';
-      }
-    });
+    // this.api.loadHousehold(clean).subscribe({
+    //   next: resp => {
+    //     debugger
+    //     this.loading = false;
+    //     this.router.navigate(
+    //         ['/sanaq-household', this.mode, clean],
+    //         // { state: { household: resp, formType: this.formType } }
+    //     );
+    //   },
+    //   error: () => {
+    //     this.loading = false;
+    //     this.errorMsg = 'Не удалось получить данные. Проверьте ИИН/БИН или попробуйте позже.';
+    //   }
+    // });
   }
 }

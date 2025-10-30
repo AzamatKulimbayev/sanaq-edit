@@ -1,0 +1,15 @@
+export enum TableEnum {
+    AnimalsSanaq = "animals_sanaq",
+    FishSanaq = "fish_sanaq",
+    HistoryAnswers = "history_answers",
+    LphArmAnimal = "lph_arm_animal",
+    LphArmFish = "lph_arm_fish",
+    LphArmGeneral = "lph_arm_general",
+    LphArmLand = "lph_arm_land",
+    LphArmPlantsTechnical = "lph_arm_plants_technical",
+    LphKato = "lph_kato",
+    RasteniyaSanaq = "rasteniya_sanaq",
+    SaleSanaq = "sale_sanaq",
+    TechnicalSanaq = "technical_sanaq",
+    ZemlyaSanaq = "zemlya_sanaq",
+}

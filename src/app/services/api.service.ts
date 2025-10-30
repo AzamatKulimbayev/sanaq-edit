@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {environment} from "../../environments/environment";
+import {Observable} from "rxjs";
 
 export interface HouseholdResponse {
     meta: {
@@ -60,14 +61,18 @@ export interface SaveRequest {
 export class ApiService {
     constructor(private http: HttpClient) {}
 
-    loadHousehold(iinBin: string) {
-        return this.http.get<ZemlyaSanaqResponse[]>(environment.apiUrl + '/api/SanaqEdit/zemlya-sanaq/' + iinBin , {  });
+    loadHousehold(iinBin: string, table: string): Observable<ZemlyaSanaqResponse[]> {
+        const payload = {
+            iin: iinBin,
+            tableName: table
+        };
+        const url = `${environment.apiUrl}/api/SanaqEdit`;
+        return this.http.post<ZemlyaSanaqResponse[]>(url, payload);
     }
 
     saveChanges(payload: ZemlyaSanaqRequest) {
-        return this.http.put<any>(environment.apiUrl + '/api/SanaqEdit/zemlya-sanaq', payload);
+        return this.http.put<any>(environment.apiUrl + '/api/SanaqEdit', payload);
     }
-
 
     loadHistories(answerIds: number[]) {
         return this.http.post<SanaqHistoriesResponse[]>(environment.apiUrl + '/api/SanaqEdit/histories-by-answer-ids' , answerIds);

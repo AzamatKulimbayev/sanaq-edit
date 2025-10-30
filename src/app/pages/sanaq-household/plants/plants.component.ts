@@ -7,6 +7,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ApiService, ZemlyaSanaqRequest, ZemlyaSanaqResponse} from "../../../services/api.service";
 import {SanaqEditDialogComponent} from "../../../shared/dialogs/sanaq-edit-dialog.component";
 import {SanaqHistoryDialogComponent} from "../../../shared/dialogs/sanaq-history-dialog.component";
+import {TableEnum} from "../../../shared/enums/table.enum";
 
 @Component({
   selector: 'land',
@@ -23,6 +24,7 @@ import {SanaqHistoryDialogComponent} from "../../../shared/dialogs/sanaq-history
 })
 export class PlantsComponent implements OnInit {
     @Input() iinBin: string;
+    @Input() table: TableEnum;
     landRows: ZemlyaSanaqResponse[] = [];
     landSummary?: { label: string; value: number };
     constructor(private dialog: MatDialog, private api: ApiService) {
@@ -32,7 +34,7 @@ export class PlantsComponent implements OnInit {
     }
 
     load(){
-        this.api.loadHousehold(this.iinBin).subscribe(resp => {
+        this.api.loadHousehold(this.iinBin, this.table).subscribe(resp => {
             this.landRows = resp;
         });
     }
@@ -53,7 +55,7 @@ export class PlantsComponent implements OnInit {
                 comment: v.comment,
                 answerId: row.answerId,
                 columnName: row.questionCode + ' ' + row.questionName,
-
+                tableName: this.table
             } as ZemlyaSanaqRequest;
 
             this.api.saveChanges(payload).subscribe(resp => {

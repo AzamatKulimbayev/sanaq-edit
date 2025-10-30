@@ -7,6 +7,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {ApiService, ZemlyaSanaqRequest, ZemlyaSanaqResponse} from "../../../services/api.service";
 import {SanaqEditDialogComponent} from "../../../shared/dialogs/sanaq-edit-dialog.component";
 import {SanaqHistoryDialogComponent} from "../../../shared/dialogs/sanaq-history-dialog.component";
+import {TableEnum} from "../../../shared/enums/table.enum";
+import {LoadingSpinnerComponent} from "../../../shared/components/loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'land',
@@ -16,15 +18,19 @@ import {SanaqHistoryDialogComponent} from "../../../shared/dialogs/sanaq-history
         MatButton,
         MatIcon,
         NgForOf,
-        NgIf
+        NgIf,
+        LoadingSpinnerComponent
     ],
   templateUrl: './land.component.html',
   styleUrl: './land.component.css'
 })
 export class LandComponent implements OnInit {
     @Input() iinBin: string;
+    @Input() table: TableEnum;
+    @Input() columnName: string;
     landRows: ZemlyaSanaqResponse[] = [];
     landSummary?: { label: string; value: number };
+    loading = false;
     constructor(private dialog: MatDialog, private api: ApiService) {
     }
     ngOnInit() {
@@ -32,28 +38,31 @@ export class LandComponent implements OnInit {
     }
 
     load(){
-        this.api.loadHousehold(this.iinBin).subscribe(resp => {
+        this.loading = true;
+        this.api.loadHousehold(this.iinBin, this.table).subscribe(resp => {
             this.landRows = resp;
+            this.loading = false;
+        }, error => {
+            this.loading = false;
         });
     }
 
 
     editLand(row: ZemlyaSanaqResponse) {
         const ref = this.dialog.open(SanaqEditDialogComponent, {
-            data: { value: String(row.personValue), label: row.questionCode + ' ' + row.questionName },
+            data: { value: String(row.personValue!), label: row.questionCode + ' ' + row.questionName },
             width: '560px',
             disableClose: true
         });
 
         ref.afterClosed().subscribe(v => {
             if (v === undefined || v === null) return;
-
             const payload = {
                 value: v.value,
                 comment: v.comment,
                 answerId: row.answerId,
-                columnName: row.questionCode + ' ' + row.questionName,
-
+                columnName: row.questionCode + ' ' + row.questionName + ' ' + row.questionName!,
+                tableName: this.table
             } as ZemlyaSanaqRequest;
 
             this.api.saveChanges(payload).subscribe(resp => {

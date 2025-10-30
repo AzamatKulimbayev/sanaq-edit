@@ -1,8 +1,8 @@
-
 import { Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MockDataService, FieldRow, BuildingRow, LandRow } from '../../services/mock-data.service';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {AppTypeEnum} from "../../shared/enums/app-type.enum";
 
 @Component({
   selector: 'app-household',
@@ -10,7 +10,7 @@ import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dial
   styleUrls: ['./household.component.css']
 })
 export class HouseholdComponent {
-  mode: 'ARM'|'SANAQ' = 'ARM';
+  mode:  AppTypeEnum = AppTypeEnum.ARM;
   id = '';
   tabIndex = 0;
 

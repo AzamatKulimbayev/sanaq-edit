@@ -79,70 +79,96 @@
     <!-- Земля -->
     <mat-tab label="Земля">
         <div class="section-card">
-            <land [iinBin]="iinBin" *ngIf="tabIndex == 1"></land>
+            <land [iinBin]="iinBin" [table]="tableEnum.ZemlyaSanaq"
+                  [columnName]="'Площадь (га)'" *ngIf="tabIndex == 1"></land>
         </div>
     </mat-tab>
-
-
-    <!-- Постройки -->
-    <mat-tab label="Постройки">
+    <mat-tab label="AnimalsSanaq">
         <div class="section-card">
-            <div class="h2">Постройки</div>
-
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Наименование</th>
-                    <th>Количество</th>
-                    <th>Площадь (м²)</th>
-                    <th>Источник</th>
-                    <th></th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <tr *ngFor="let b of buildings">
-                    <td>{{ b.name }}</td>
-
-                    <td>
-
-                        <input
-                                class="mat-mdc-input-element mdc-text-field__input"
-                                style="width:80px; padding:10px 12px; border:1px solid #e5e7eb; border-radius:12px"
-                                type="number"
-                                [(ngModel)]="b.qty">
-                    </td>
-
-                    <td>
-                        <input
-                                class="mat-mdc-input-element mdc-text-field__input"
-                                style="width:120px; padding:10px 12px; border:1px solid #e5e7eb; border-radius:12px"
-                                type="number"
-                                [(ngModel)]="b.area">
-                    </td>
-
-                    <td>{{ b.source }}</td>
-
-                    <td style="text-align:right;">
-                        <button mat-stroked-button>
-                            <mat-icon>edit</mat-icon>
-                        </button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <land [iinBin]="iinBin" [table]="tableEnum.AnimalsSanaq" [columnName]="'Значение'" *ngIf="tabIndex == 2"></land>
+        </div>
+    </mat-tab>
+    <mat-tab label="FishSanaq">
+        <div class="section-card">
+            <land [iinBin]="iinBin" [table]="tableEnum.FishSanaq" [columnName]="'Значение'" *ngIf="tabIndex == 3"></land>
+        </div>
+    </mat-tab>
+    <mat-tab label="RasteniyaSanaq">
+        <div class="section-card">
+            <land [iinBin]="iinBin" [table]="tableEnum.RasteniyaSanaq" [columnName]="'Значение'" *ngIf="tabIndex == 4"></land>
+        </div>
+    </mat-tab>
+    <mat-tab label="SaleSanaq">
+        <div class="section-card">
+            <land [iinBin]="iinBin" [table]="tableEnum.SaleSanaq" [columnName]="'Значение'" *ngIf="tabIndex == 5"></land>
         </div>
     </mat-tab>
 
-
-    <!-- Заглушки -->
-    <mat-tab label="Культуры">
-        <div class="section-card small">Заглушка</div>
+    <mat-tab label="TechnicalSanaq">
+        <div class="section-card">
+            <land [iinBin]="iinBin" [table]="tableEnum.TechnicalSanaq" [columnName]="'Значение'" *ngIf="tabIndex == 6"></land>
+        </div>
     </mat-tab>
 
-    <mat-tab label="Плоды">
-        <div class="section-card small">Заглушка</div>
-    </mat-tab>
+<!--    &lt;!&ndash; Постройки &ndash;&gt;-->
+<!--    <mat-tab label="Постройки">-->
+<!--        <div class="section-card">-->
+<!--            <div class="h2">Постройки</div>-->
+
+<!--            <table class="table">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>Наименование</th>-->
+<!--                    <th>Количество</th>-->
+<!--                    <th>Площадь (м²)</th>-->
+<!--                    <th>Источник</th>-->
+<!--                    <th></th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+
+<!--                <tbody>-->
+<!--                <tr *ngFor="let b of buildings">-->
+<!--                    <td>{{ b.name }}</td>-->
+
+<!--                    <td>-->
+
+<!--                        <input-->
+<!--                                class="mat-mdc-input-element mdc-text-field__input"-->
+<!--                                style="width:80px; padding:10px 12px; border:1px solid #e5e7eb; border-radius:12px"-->
+<!--                                type="number"-->
+<!--                                [(ngModel)]="b.qty">-->
+<!--                    </td>-->
+
+<!--                    <td>-->
+<!--                        <input-->
+<!--                                class="mat-mdc-input-element mdc-text-field__input"-->
+<!--                                style="width:120px; padding:10px 12px; border:1px solid #e5e7eb; border-radius:12px"-->
+<!--                                type="number"-->
+<!--                                [(ngModel)]="b.area">-->
+<!--                    </td>-->
+
+<!--                    <td>{{ b.source }}</td>-->
+
+<!--                    <td style="text-align:right;">-->
+<!--                        <button mat-stroked-button>-->
+<!--                            <mat-icon>edit</mat-icon>-->
+<!--                        </button>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--    </mat-tab>-->
+
+
+<!--    &lt;!&ndash; Заглушки &ndash;&gt;-->
+<!--    <mat-tab label="Культуры">-->
+<!--        <div class="section-card small">Заглушка</div>-->
+<!--    </mat-tab>-->
+
+<!--    <mat-tab label="Плоды">-->
+<!--        <div class="section-card small">Заглушка</div>-->
+<!--    </mat-tab>-->
 </mat-tab-group>
 
 

@@ -10,6 +10,9 @@ import {
 } from '../../services/api.service';
 import {SanaqHistoryDialogComponent} from "../../shared/dialogs/sanaq-history-dialog.component";
 import {SanaqEditDialogComponent} from "../../shared/dialogs/sanaq-edit-dialog.component";
+import {FormTypeEnum} from "../../shared/enums/form-type.enum";
+import {AppTypeEnum} from "../../shared/enums/app-type.enum";
+import {TableEnum} from "../../shared/enums/table.enum";
 
 @Component({
   selector: 'app-sanaq-household',
@@ -17,39 +20,23 @@ import {SanaqEditDialogComponent} from "../../shared/dialogs/sanaq-edit-dialog.c
   styleUrls: ['./sanaq-household.component.css']
 })
 export class SanaqHouseholdComponent {
-  mode: 'ARM' | 'SANAQ' = 'SANAQ';
+  mode: AppTypeEnum = AppTypeEnum.SANAQ;
   iinBin = '';
-  formType: 'LPH' | 'SHP' | null = null;
-
+  formType: FormTypeEnum | null = null;
   data!: HouseholdResponse;
-
   personalRows: any[] = [];
-
   buildings: any[] = [];
-
   tabIndex = 0;
-
   changes: Array<{ fieldId: string; newValue: any; comment?: string }> = [];
-
+  tableEnum = TableEnum;
   constructor(
       private ar: ActivatedRoute,
       private router: Router,
       private api: ApiService,
       private dialog: MatDialog
   ) {
-    this.mode = (this.ar.snapshot.paramMap.get('mode') as any) || 'SANAQ';
+    this.mode = (this.ar.snapshot.paramMap.get('mode') as any) || AppTypeEnum.SANAQ;
     this.iinBin = this.ar.snapshot.paramMap.get('id') || '';
-
-    const nav = this.router.getCurrentNavigation();
-    const st = nav?.extras?.state as { household?: HouseholdResponse; formType?: 'LPH'|'SHP' };
-
-    if (st?.household) {
-      this.formType = st.formType ?? null;
-      // this.applyResponse(st.household);
-    } else {
-
-
-    }
   }
 
   applyResponse(resp: ZemlyaSanaqResponse) {
