@@ -29,9 +29,6 @@
           align-items:center;
           margin-bottom:8px;">
                 <div class="h2">Личная информация</div>
-                <button mat-stroked-button (click)="openHistory()">
-                    ⏱ История
-                </button>
             </div>
 
             <table class="table">
@@ -61,13 +58,7 @@
                     </td>
 
                     <td style="text-align:right">
-                        <button
-                                mat-stroked-button
-                                color="primary"
-                                *ngIf="r.editable"
-                                (click)="editPersonal(r)">
-                            <mat-icon>edit</mat-icon>&nbsp;Редактировать
-                        </button>
+
                     </td>
                 </tr>
                 </tbody>
@@ -182,7 +173,7 @@
         Отмена
     </button>
 
-    <button mat-raised-button color="primary" (click)="save()">
-        Сохранить
-    </button>
+<!--    <button mat-raised-button color="primary" (click)="save()">-->
+<!--        Сохранить-->
+<!--    </button>-->
 </div>

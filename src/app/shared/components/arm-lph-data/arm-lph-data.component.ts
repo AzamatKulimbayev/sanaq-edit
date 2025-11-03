@@ -1,34 +1,34 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DecimalPipe, NgForOf, NgIf} from "@angular/common";
+import {LoadingSpinnerComponent} from "../loading-spinner/loading-spinner.component";
 import {MatButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
-
+import {TableEnum} from "../../enums/table.enum";
+import {ApiService, ZemlyaSanaqRequest} from "../../../services/api.service";
 import {MatDialog} from "@angular/material/dialog";
-import {ApiService, ZemlyaSanaqRequest, ZemlyaSanaqResponse} from "../../../services/api.service";
-import {SanaqEditDialogComponent} from "../../../shared/dialogs/sanaq-edit-dialog.component";
-import {SanaqHistoryDialogComponent} from "../../../shared/dialogs/sanaq-history-dialog.component";
-import {TableEnum} from "../../../shared/enums/table.enum";
-import {LoadingSpinnerComponent} from "../../../shared/components/loading-spinner/loading-spinner.component";
+import {SanaqEditDialogComponent} from "../../dialogs/sanaq-edit-dialog.component";
+import {SanaqHistoryDialogComponent} from "../../dialogs/sanaq-history-dialog.component";
+import {ArmLphData} from "../../models/arm-lph-data";
 
 @Component({
-  selector: 'land',
+  selector: 'arm-lph-data',
   standalone: true,
     imports: [
         DecimalPipe,
+        LoadingSpinnerComponent,
         MatButton,
         MatIcon,
         NgForOf,
-        NgIf,
-        LoadingSpinnerComponent
+        NgIf
     ],
-  templateUrl: './land.component.html',
-  styleUrl: './land.component.css'
+  templateUrl: './arm-lph-data.component.html',
+  styleUrl: './arm-lph-data.component.css'
 })
-export class LandComponent implements OnInit {
+export class ArmLphDataComponent implements OnInit{
     @Input() iinBin: string;
     @Input() table: TableEnum;
     @Input() columnName: string;
-    landRows: ZemlyaSanaqResponse[] = [];
+    landRows: ArmLphData[] = [];
     landSummary?: { label: string; value: number };
     loading = false;
     constructor(private dialog: MatDialog, private api: ApiService) {
@@ -39,7 +39,7 @@ export class LandComponent implements OnInit {
 
     load(){
         this.loading = true;
-        this.api.loadHousehold(this.iinBin, this.table).subscribe(resp => {
+        this.api.loadArmLph(this.iinBin, this.table).subscribe(resp => {
             this.landRows = resp;
             this.loading = false;
         }, error => {
@@ -48,9 +48,9 @@ export class LandComponent implements OnInit {
     }
 
 
-    editLand(row: ZemlyaSanaqResponse) {
+    editLand(row: ArmLphData) {
         const ref = this.dialog.open(SanaqEditDialogComponent, {
-            data: { value: String(row.personValue!), label: row.questionCode + ' ' + row.questionName },
+            data: { value: String(row.value!), label: row.question + ' ' + row.questionOption },
             width: '560px',
             disableClose: true
         });
@@ -60,28 +60,28 @@ export class LandComponent implements OnInit {
             const payload = {
                 value: v.value,
                 comment: v.comment,
-                answerId: row.answerId,
-                columnName: row.questionCode + ' ' + row.questionName + ' ' + row.questionName!,
+                answerId: row.id,
+                columnName: row.questionCode + ' ' + row.question + ' ' + row.questionOption!,
                 tableName: this.table
             } as ZemlyaSanaqRequest;
 
-            this.api.saveChanges(payload).subscribe(resp => {
-                row.personValue = v.value;
+            this.api.saveArmLph(payload).subscribe(resp => {
+                row.value = v.value;
             });
 
         });
     }
 
     totalLand() {
-        return this.landRows.reduce((sum, row) => sum + Number(row.personValue || 0), 0);
+        return this.landRows.reduce((sum, row) => sum + Number(row.value || 0), 0);
     }
 
     openHistory() {
         let answerIds: number[] = [];
         this.landRows.forEach(item => {
-            answerIds.push(item.answerId);
+            answerIds.push(item.id);
         })
-        this.api.loadHistories(answerIds).subscribe(resp => {
+        this.api.loadArmLphHistories(answerIds).subscribe(resp => {
             this.dialog.open(SanaqHistoryDialogComponent, {
                 data: resp,
                 width: '760px'

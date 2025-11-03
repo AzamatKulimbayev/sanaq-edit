@@ -21,7 +21,7 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {SourceSelectComponent} from './pages/source-select/source-select.component';
 import {SearchComponent} from './pages/search/search.component';
-import {HouseholdComponent, EditDialogComponent, HistoryDialogComponent} from './pages/household/household.component';
+import {HouseholdComponent} from './pages/household/household.component';
 import {SanaqSearchComponent} from "./pages/sanaq-search/sanaq-search.component";
 
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -34,6 +34,7 @@ import {SanaqHistoryDialogComponent} from "./shared/dialogs/sanaq-history-dialog
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
+import {ArmLphDataComponent} from "./shared/components/arm-lph-data/arm-lph-data.component";
 
 registerLocaleData(localeRu, 'ru');
 
@@ -43,8 +44,6 @@ registerLocaleData(localeRu, 'ru');
         SourceSelectComponent,
         SearchComponent,
         HouseholdComponent,
-        EditDialogComponent,
-        HistoryDialogComponent,
         SanaqSearchComponent,
         SanaqHouseholdComponent,
         SanaqEditDialogComponent,
@@ -66,7 +65,7 @@ registerLocaleData(localeRu, 'ru');
         MatButtonModule, MatInputModule, MatIconModule, MatCardModule, MatTabsModule,
         MatTableModule, MatDialogModule, MatSelectModule, MatBadgeModule, MatTooltipModule,
         MatRippleModule,
-        HttpClientModule, MatProgressSpinner, LandComponent
+        HttpClientModule, MatProgressSpinner, LandComponent, ArmLphDataComponent
 
     ],
     providers: [

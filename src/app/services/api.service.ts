@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
+import {ArmLphData} from "../shared/models/arm-lph-data";
 
 export interface HouseholdResponse {
     meta: {
@@ -76,5 +77,23 @@ export class ApiService {
 
     loadHistories(answerIds: number[]) {
         return this.http.post<SanaqHistoriesResponse[]>(environment.apiUrl + '/api/SanaqEdit/histories-by-answer-ids' , answerIds);
+    }
+
+
+    loadArmLph(iinBin: string, table: string): Observable<ArmLphData[]> {
+        const payload = {
+            iin: iinBin,
+            tableName: table
+        };
+        const url = `${environment.apiUrl}/api/SanaqEdit/arm-lph`;
+        return this.http.post<ArmLphData[]>(url, payload);
+    }
+
+    saveArmLph(payload: ZemlyaSanaqRequest) {
+        return this.http.put<any>(environment.apiUrl + '/api/SanaqEdit/arm-lph', payload);
+    }
+
+    loadArmLphHistories(answerIds: number[]) {
+        return this.http.post<SanaqHistoriesResponse[]>(environment.apiUrl + '/api/SanaqEdit/histories-arm-lph-by-answer-ids' , answerIds);
     }
 }
